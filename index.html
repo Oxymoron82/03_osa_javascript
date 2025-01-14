@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript_03_osa</title>
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./layout.css" />
+  </head>
+  <body>
+    <h1>Hei Java Script</h1>
+    <p></p>
+    <p>
+      Tehtävänä on koodata JavaScriptillä keskusteluikkuna, johon lisätään
+      sisältö "Hyvää huomenta!". (alert)
+    </p>
+    <p>
+      olmana tehtävänä kirjoittaa selaimen konsoliin jotankin. (console.log)
+    </p>
+
+    <script>
+      //EHTOLAUSEET
+
+      /**
+                                          Toteuta funktio canVote siten, että se palauttaa arvon true aina kun ikä on 18 tai enemmän ja false muissa tapauksissa.
+                                          */
+
+      function fullAge(age) {
+        if (age >= 18) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      console.log(fullAge(25));
+      console.log(fullAge(18));
+      console.log(fullAge(10));
+
+      /**
+                              Täydennä funktio evenOrOdd siten, että se palauttaa merkkijonon "even", kun se saa parametriksi parillisen luvun, ja muuten "odd".
+                               */
+
+      function evenOrOdd(number) {
+        if (number % 2 === 0) {
+          return "even";
+        } else {
+          return "Odd";
+        }
+      }
+
+      console.log(evenOrOdd(7));
+      console.log(evenOrOdd(2));
+      console.log(evenOrOdd(-5));
+
+      /**
+                        Kehitä funktio nimeltä greaterNum, joka:
+
+                        - Hyväksyy kaksi argumenttia, jotka molemmat ovat numeroita.
+                        - Palauttaa näistä kahdesta suuremman numeron.
+                         */
+
+      function greaterNum(number1, number2) {
+        if (number1 > number2) {
+          return number1;
+        } else {
+          return number2;
+        }
+      }
+
+      console.log(greaterNum(20, 10));
+      console.log(greaterNum(8, 1));
+      console.log(greaterNum(5, -5));
+
+      /**
+                  Kehitä funktio nimeltä assignGrade, joka:
+
+                  Hyväksyy yhden argumentin, numeerisen pistemäärän.
+                  Palauttaa kirjainarvosanan pistemäärän perusteella seuraavasti:
+                  - 'A' pistemäärille 90 tai enemmän.
+                  - 'B' pistemäärille 80-89.
+                  - 'C' pistemäärille 70-79.
+                  - 'D' pistemäärille 60-69.
+                  - 'F' pistemäärille alle 60.
+
+                  */
+
+      // Esimerkkikäyttö - älä muokkaa
+      /*console.log('Sinä sait ' + assignGrade(95)); // Sinä sait A
+                  console.log('Sinä sait ' + assignGrade(81)); // Sinä sait B
+                  console.log('Sinä sait ' + assignGrade(72)); // Sinä sait C
+                  console.log('Sinä sait ' + assignGrade(64)); // Sinä sait D
+                  console.log('Sinä sait ' + assignGrade(42)); // Sinä sait F*/
+
+      function assignGrade(piste) {
+        if (piste >= 90) {
+          return "A";
+        } else if (piste >= 80) {
+          return "B";
+        } else if (piste >= 70) {
+          return "C";
+        } else if (piste >= 60) {
+          return "D";
+        } else if (piste >= 50) {
+          return "E";
+        }
+      }
+
+      console.log("you get " + assignGrade(85));
+      console.log("you get " + assignGrade(91));
+      console.log("you get " + assignGrade(76));
+      console.log("you get " + assignGrade(49));
+
+      /**
+      Kirjoita funktio nimeltä pluralize, joka:
+
+      Hyväksyy kaksi argumenttia: substantiivin ja numeron.
+      Palauttaa merkkijonon, joka yhdistää numeron ja sopivasti taipuvan muodon substantiivista, kuten '5 kissaa' tai '1 koira'.
+
+       */
+
+      function makeALot(nimi, määrä) {
+        let single;
+
+        if (määrä === 1) {
+          single = nimi;
+        } else if (määrä > 1) {
+          single = nimi + "a";
+        }
+
+        return "Minulla on " + määrä + " " + single;
+      }
+      console.log(makeALot("sohva", 3));
+
+      /**Luo Magic 8-Ball -ohjelma, joka matkii klassista kohtalon ennustamisen lelua. Käyttäjä syöttää kyllä-tai-ei -kysymyksen, ja ohjelma
+       * antaa satunnaisen vastauksen 8-pallosta. Toteuta ohjelma käyttämällä ehtolauseita valitsemaan ja näyttämään yksi useista ennalta määritellyistä vastauksista. */
+
+      function magic8Ball() {
+        const answers = [
+          "Kyllä.",
+          "Ei.",
+          "En ole varma, yritä uudelleen.",
+          "Tämä kysymys on liian vaikea.",
+          "Ei ole hyvä aika kysyä.",
+          "Vastaus ei ole selvä.",
+          "Ehdottomasti kyllä!",
+          "Ehdottomasti ei!",
+          "Voi olla, mutta en ole varma.",
+        ];
+
+        const randomIndex = Math.floor(Math.random() * answers.length);
+
+        return answers[randomIndex];
+      }
+
+      const userQuestion = prompt("Esitä kysymys (kyllä/ei):");
+
+      if (userQuestion) {
+        alert("Kysymyksesi oli: " + userQuestion);
+        alert("Magic 8-Ball vastaa: " + magic8Ball());
+      } else {
+        alert("Kysymys ei voi olla tyhjä!");
+      }
+
+      /* 
+Kirjoita JavaScript-koodi, joka lisää tapahtumankäsittelijän napille.
+
+Kun nappia klikataan, funktion tulisi:
+- Hakea arvo syötekentästä.
+- Luoda uusi <li> elementti ja asettaa sen tekstisisältö syötekentän arvoksi.
+- Lisätä uusi <li> elementti hedelmälistan <ul>-elementtiin.
+
+Varmista, että syötekenttä tyhjennetään hedelmän lisäämisen jälkeen.
+*/
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Добавить фрукт</title>
+</head>
+<body>
+
+  
+  <input type="text" id="fruitInput" placeholder="Введите название фрукта">
+
+ 
+  <button id="addButton">Добавить фрукт</button>
+
+ 
+  <ul id="fruitList">
+
+  </ul>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+      const addButton = document.getElementById("addButton");
+      const fruitInput = document.getElementById("fruitInput");
+      const fruitList = document.getElementById("fruitList");
+
+      addButton.addEventListener("click", function () {
+        const fruitValue = fruitInput.value;
+
+        if (fruitValue.trim() !== "") {
+          const newLi = document.createElement("li");
+          newLi.textContent = fruitValue;
+
+          fruitList.appendChild(newLi);
+
+          fruitInput.value = "";
+        } else {
+          alert("anna hedelman nimi");
+        }
+      });
+
+
+    </script>
+  </body>
+</html>
